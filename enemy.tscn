@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://i4q4xmgnplak"]
+
+[ext_resource type="Texture2D" uid="uid://bnwaw3taeijfv" path="res://Assets/Sprites/Enemy.png" id="1_ky58g"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_mjm06"]
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_mjm06")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+texture = ExtResource("1_ky58g")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -2, 1, -7, 3, -7, 5, -5, 5, 5, 3, 7, 1, 7, -5, 2)
