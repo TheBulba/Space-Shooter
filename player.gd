@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-var BULLET = preload("res://bullet.tscn")
+const BULLET = preload("res://bullet.tscn")
+const EXPLODE = preload("res://explosion_effect.tscn")
 
 const SPEED = 100.0
 
@@ -22,3 +23,9 @@ func Fire_Bullet():
 	var main = get_tree().current_scene
 	main.add_child(bullet)
 	bullet.global_position = global_position
+
+func _exit_tree():
+	var main = get_tree().current_scene
+	var explosion = EXPLODE.instantiate()
+	main.add_child.call_deferred(explosion)
+	explosion.global_position = global_position

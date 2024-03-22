@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu16x7b7qevll"]
+[gd_scene load_steps=4 format=3 uid="uid://bu16x7b7qevll"]
 
+[ext_resource type="Script" path="res://World.gd" id="1_4lnrh"]
 [ext_resource type="PackedScene" uid="uid://b00oivmykog53" path="res://player.tscn" id="1_ijbk6"]
-[ext_resource type="PackedScene" uid="uid://i4q4xmgnplak" path="res://enemy.tscn" id="2_whsw0"]
+[ext_resource type="PackedScene" uid="uid://dv7wqh1xur86c" path="res://spawner.tscn" id="2_t58xb"]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" groups=["World"]]
+script = ExtResource("1_4lnrh")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -17,5 +19,12 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("1_ijbk6")]
 position = Vector2(16, 160)
 
-[node name="Enemy" parent="." instance=ExtResource("2_whsw0")]
-position = Vector2(256, 160)
+[node name="Spawner" parent="." instance=ExtResource("2_t58xb")]
+position = Vector2(320, 0)
+
+[node name="Score" type="Label" parent="."]
+offset_right = 320.0
+offset_bottom = 23.0
+size_flags_vertical = 0
+text = "Score = 0"
+horizontal_alignment = 1
