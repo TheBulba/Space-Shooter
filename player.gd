@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
+signal player_death
+
 const BULLET = preload("res://bullet.tscn")
 const EXPLODE = preload("res://explosion_effect.tscn")
 
 const SPEED = 100.0
 
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	#var x = Input.get_axis("ui_left", "ui_right")
 	var y = Input.get_axis("ui_up", "ui_down")
@@ -29,3 +31,4 @@ func _exit_tree():
 	var explosion = EXPLODE.instantiate()
 	main.add_child.call_deferred(explosion)
 	explosion.global_position = global_position
+	player_death.emit()

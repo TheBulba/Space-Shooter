@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bluf5w3eilmfl"]
+[gd_scene load_steps=6 format=3 uid="uid://bluf5w3eilmfl"]
 
 [ext_resource type="Texture2D" uid="uid://c40ucuyjndw6c" path="res://Assets/Sprites/Explosion.png" id="1_lvj45"]
+[ext_resource type="AudioStream" uid="uid://drr8sj21bb3h1" path="res://Assets/Sounds/Explode.wav" id="2_sti7i"]
 
 [sub_resource type="Animation" id="Animation_ci8dc"]
 resource_name = "Explode"
@@ -62,3 +63,7 @@ libraries = {
 "": SubResource("AnimationLibrary_1avtv")
 }
 autoplay = "Explode"
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sti7i")
+autoplay = true

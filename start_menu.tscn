@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://du24t06s3flli"]
+
+[ext_resource type="Script" path="res://start_menu.gd" id="1_4d7iw"]
+[ext_resource type="FontFile" uid="uid://hvv0mlp2peqc" path="res://Assets/Fonts/PixelRPG.ttf" id="2_dkhu0"]
+[ext_resource type="Texture2D" uid="uid://duq6824qy3q2m" path="res://Assets/Sprites/Ship.png" id="3_vyruu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4n6gw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jlgew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hk8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cnyu"]
+
+[sub_resource type="Animation" id="Animation_rc12n"]
+resource_name = "Into"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-20, 90), Vector2(40, 90), Vector2(20, 90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Score:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hni0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Score:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnrla"]
+_data = {
+"Into": SubResource("Animation_rc12n"),
+"RESET": SubResource("Animation_hni0s")
+}
+
+[node name="StartMenu" type="Node"]
+script = ExtResource("1_4d7iw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 200.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("2_dkhu0")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4n6gw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jlgew")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3hk8q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2cnyu")
+text = "Start"
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2(320, 90)
+amount = 150
+lifetime = 7.0
+preprocess = 7.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 90)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 100.0
+
+[node name="Ship" type="Sprite2D" parent="."]
+position = Vector2(20, 90)
+texture = ExtResource("3_vyruu")
+
+[node name="Fly_In" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cnrla")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="Score" type="Label" parent="."]
+offset_top = -20.0
+offset_right = 320.0
+offset_bottom = -3.0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_dkhu0")
+theme_override_font_sizes/font_size = 12
+text = "Score 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

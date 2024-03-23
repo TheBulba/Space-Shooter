@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdlntf2pfjcj0"]
+
+[ext_resource type="FontFile" uid="uid://hvv0mlp2peqc" path="res://Assets/Fonts/PixelRPG.ttf" id="1_u3csd"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_vn23s"]
+
+[node name="Game_Over" type="Node"]
+script = ExtResource("1_vn23s")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2(320, 90)
+amount = 150
+lifetime = 7.0
+preprocess = 7.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 90)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 100.0
+
+[node name="Game_Over" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 80.0
+offset_right = 218.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("1_u3csd")
+theme_override_font_sizes/font_size = 18
+text = "Game Over
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highscore" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("1_u3csd")
+theme_override_font_sizes/font_size = 12
+text = "Highscore: 0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Label" parent="."]
+offset_top = 160.0
+offset_right = 120.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("1_u3csd")
+theme_override_font_sizes/font_size = 6
+text = "ENTER: Menu
+ESC: Leave
+"
+vertical_alignment = 1
